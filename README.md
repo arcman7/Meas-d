@@ -16,3 +16,12 @@ Back-end: Rails Server
 
 Front-end:
  -??
+
+Database Schema (mvp):
+![ Current Schema](./mvp_schema.png)
+
+
+Wire Frame (mvp)
+![Wire Frame](./MeasD_Wireframe.png)
+
+
