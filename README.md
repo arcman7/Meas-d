@@ -22,6 +22,6 @@ Database Schema (mvp):
 
 
 Wire Frame (mvp)
-![Wire Frame](./MeasD_Wireframe.pdf)
+![Wire Frame](./MeasD_Wireframe.png)
 
 
