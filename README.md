@@ -5,6 +5,7 @@ This project's intent is to build an app that aids in the process of moving from
 
 Scope of the mvp:
 1.
+
 2.
 3.
 4.
