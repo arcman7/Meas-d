@@ -6,9 +6,11 @@ This project's intent is to build an app that aids in the process of moving from
 Scope of the mvp:
 
 1) General  
+
   a) vision  
     * Make planning your move fun  
-    * Measure twice, happy moving, no surprises(eliminate unknowns)  
+    * Measure twice, happy moving, no surprises(eliminate unknowns) 
+    
   b) values  
     * Great/Attractive User Experience *  
     * Learning new tech **  
@@ -18,6 +20,7 @@ Scope of the mvp:
     * Respecting each other *  
     * Positive experience for US *  
     * Lots of communication, open expression *  
+    
   c) Working Agreement  
               weekday     weekend  
     * Majd:   9am-11pm    12pm-11pm  
