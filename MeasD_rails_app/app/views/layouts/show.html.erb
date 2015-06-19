@@ -2,14 +2,8 @@
 
 <p>
  <strong>File:</strong>
-<%= image_tag serve_layout_path([@user, @layout]) %>
+<%= image_tag serve_user_layout_path(params[:user_id], params[:id]) %>
 </p>
 
-<!-- <p>
- <strong>User:</strong>
- <%=
- # @user.username %>
-# </p> -->
-
-<%= link_to 'Edit', edit_layout_path(@layout) %> |
-<%= link_to 'Back', layouts_path %>
+<%= link_to 'Edit', edit_user_layout_path(4, 17) %> |
+<%= link_to 'Back', user_layouts_path %>

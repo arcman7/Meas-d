@@ -4,11 +4,13 @@ class LayoutsController < ApplicationController
   end
 
   def show
-    @layout = Layout.find(params[:id])
+    # @layout = Layout.find(params[:id])
   end
 
   def serve
+    p "GOT HERE!!!"
     @layout = Layout.find(params[:id])
+    @user = @layout.user
     send_data(@layout.sandbox, :type => @layout.mime_type, :filename => "#{@layout.name}.png", :disposition => "inline")
   end
 
@@ -18,6 +20,7 @@ class LayoutsController < ApplicationController
   end
 
   def create
+    p params
     @user = User.find(params[:user_id])
     @layout = @user.layouts.new(layout_params) do |t|
       if params[:layout][:sandbox]
@@ -27,7 +30,7 @@ class LayoutsController < ApplicationController
       end
     end
     if @layout.save
-      redirect_to user_layouts_path(@user)
+      redirect_to user_layout_path(@user, @layout)
       # add a notice that layout saved successfully
     else
       render :action => "new"
@@ -52,6 +55,6 @@ class LayoutsController < ApplicationController
 
   private
     def layout_params
-      params.require(:layout).permit(:sandbox)
+      params.require(:layout).permit(params[:layout][:sandbox], :user_id, :name)
     end
 end

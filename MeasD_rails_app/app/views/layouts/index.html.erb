@@ -16,7 +16,7 @@
      <tr>
        <td><%= layout.sandbox %></td>
        <td><%= layout.user_id %></td>
-       <td><%= link_to 'Show', user_layout_path(layout) %></td>
+       <td><%= link_to 'Show', user_layout_path([layout.user,layout]) %></td>
        <td><%= link_to 'Edit', edit_layout_path(layout) %></td>
        <td><%= link_to 'Destroy', layout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
      </tr>
