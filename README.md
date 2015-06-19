@@ -13,3 +13,6 @@ Scope of the mvp:
 
 Back-end: Rails Server
   - fucntions as a json-api 
+
+Front-end:
+ -??
