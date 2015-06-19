@@ -24,6 +24,4 @@ Database Schema (mvp):
 Wire Frame (mvp)
 ![Wire Frame](./MeasD_Wireframe.pdf)
 
-<object data="/s/YMeasD_Wireframe.pdf" type="application/pdf" width="300" height="500">
-  alt : <a href="/s/MeasD_Wireframe.pdf">YOUR-RESUME-NAME.pdf</a>
-</object>
+
