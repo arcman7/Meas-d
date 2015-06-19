@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :layouts
+    resources :layouts do
+       get "serve", :on => :member
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619040601) do
+ActiveRecord::Schema.define(version: 20150619175347) do
 
   create_table "layouts", force: :cascade do |t|
     t.binary   "sandbox"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "filename"
+    t.string   "name"
+    t.string   "mime_type"
   end
 
   add_index "layouts", ["user_id"], name: "index_layouts_on_user_id"

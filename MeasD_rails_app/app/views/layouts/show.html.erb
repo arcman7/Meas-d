@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+ <strong>File:</strong>
+<%= image_tag serve_user_layout_path(params[:user_id], params[:id]) %>
+</p>
+
+<%= link_to 'Edit', edit_user_layout_path(4, 17) %> |
+<%= link_to 'Back', user_layouts_path %>
