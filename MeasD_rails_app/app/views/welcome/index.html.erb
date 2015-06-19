@@ -1,0 +1,35 @@
+<div class="header">
+  <div class="logo">::Logo:Meas'd::</div>
+  <div class="upper-right-menu">Login, Help, About</div>
+</div>
+
+<div class="welcome">
+  <h1>*****************************</h1>
+  <br><br>
+  <h1>Welcome To Measure Twice!</h1>
+  <p>An App That Makes Moving Fun</p>
+  <br><br>
+  <h1>*****************************</h1
+</div>
+
+<h4><%= link_to 'Sign Up', new_user_path %> (Have this link render the following form via AJAX)</h4>
+<h1>New User</h1>
+<div class="placeholder for partial render?"></div>
+
+<%= form_for :user, url: users_path do |f| %>
+  <div class="placeholder for errors"></div>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
