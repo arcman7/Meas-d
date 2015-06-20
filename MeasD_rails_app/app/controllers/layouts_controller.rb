@@ -4,13 +4,13 @@ class LayoutsController < ApplicationController
   end
 
   def show
-    # @layout = Layout.find(params[:id])
+    @layout = Layout.find(params[:id])
   end
 
   def serve
     p "GOT HERE!!!"
     @layout = Layout.find(params[:id])
-    @user = @layout.user
+    # @user = @layout.user
     send_data(@layout.sandbox, :type => @layout.mime_type, :filename => "#{@layout.name}.png", :disposition => "inline")
   end
 

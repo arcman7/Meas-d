@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :layouts do
-       get "serve", :on => :member
-    end
+    resources :layouts
   end
+
+  resources :layouts, only: [:show] do
+     get "serve", :on => :member
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
