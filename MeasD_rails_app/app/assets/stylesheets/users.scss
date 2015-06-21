@@ -5,4 +5,24 @@
   border: 1px solid red;
   height: 400px;
   width: 800px;
+  display: inline-block;
+
 }
+
+#furniture_info{
+  border: 1px solid red;
+  width: 200px;
+  height: 400px;
+  display: inline-block;
+  float:  left;
+}
+
+#room_info{
+  border: 1px solid red;
+  width: 200px;
+  height: 400px;
+  display: inline-block;
+  float: right;
+}
+
+
