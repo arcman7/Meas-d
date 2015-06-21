@@ -1,7 +1,5 @@
 $(document).on('ready',function(){
 
-
-
 var elem = document.getElementById('draw-groups').children[0];
 
 var two = new Two({ width: 1000, height: 1000 }).appendTo(elem);
