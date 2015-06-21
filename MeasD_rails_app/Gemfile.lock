@@ -1,6 +1,5 @@
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
@@ -91,11 +90,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.1)
       sprockets-rails
-    rails-assets-bootstrap (3.3.5)
-      rails-assets-jquery (>= 1.9.1)
-    rails-assets-jquery (2.1.4)
-    rails-assets-svg.draggable (0.1.0)
-    rails-assets-svg.js (2.0.0)
+
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -156,9 +151,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.1)
-  rails-assets-bootstrap!
-  rails-assets-svg.draggable!
-  rails-assets-svg.js!
+
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
