@@ -8,10 +8,11 @@ $(document).ready(function(){
 // , maxX: 200
 // , maxY: 300
 // });
-
+  var roomWidth = 400;
+  var roomLength = 250;
   var line = draw.line(0,350, 800,350).stroke({ width: 1 })
 
-  var room = draw.rect(400,250)
+  var room = draw.rect(roomWidth,roomLength)
   room.fill('white')
   room.stroke({color: 'black', width: 1})
   room.move(200,50)
@@ -32,6 +33,5 @@ $(document).ready(function(){
     , maxY: 300
     })
   })
-
 
 })
