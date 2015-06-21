@@ -40,6 +40,8 @@ GEM
     arel (6.0.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bower (0.0.5)
+      multi_json
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -93,6 +95,7 @@ GEM
       rails-assets-jquery (>= 1.9.1)
     rails-assets-jquery (2.1.4)
     rails-assets-svg.draggable (0.1.0)
+    rails-assets-svg.js (2.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -147,6 +150,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bower
   byebug
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
@@ -154,6 +158,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails-assets-bootstrap!
   rails-assets-svg.draggable!
+  rails-assets-svg.js!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
