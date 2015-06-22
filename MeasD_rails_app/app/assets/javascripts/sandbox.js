@@ -46,25 +46,56 @@ $(document).ready(function(){
 
     var element;
     var selected = false;
+    var a = -1;
     var selectTop, selectBottom, selectLeft, selectRight;
     selectTop = draw.line(0,0,0,0).stroke({width: 1}); selectBottom = draw.line(0,0,0,0).stroke({width: 1}); selectLeft = draw.line(0,0,0,0).stroke({width: 1}); selectRight = draw.line(0,0,0,0).stroke({width: 1});
-
+    var knob = draw.circle(0).stroke({color: "blue", width: 2});
+    var connectKnob = draw.circle(0);
+    var connectLine = draw.line(0,0,0,0);
+    connectKnob.attr({fill: "blue"});
+    knob.attr({ fill: "green"});
     var padding=3;
-    $('svg').on('mousedown', 'g[name="sandbox"] image', function(){
-      selected = true;
-      if(selected){
+
+
+
+    $('svg').on('click', function(){
+      if(a>-1){ a -= 1; }
+
+        //console.log("event -",a);
+       //console.log(this.getAttribute('id'));
+      // console.log(element.type);
+      if(a == -1 ){
+        selectTop.plot(0,0,0,0).stroke({ width: 1});
+        selectBottom.plot(0,0,0,0).stroke({ width: 1});
+        selectLeft.plot(0,0,0,0).stroke({ width: 1});
+        selectRight.plot(0,0,0,0).stroke({ width: 1});
+        knob.radius(0);
+        connectKnob.radius(0);
+        connectLine.plot(0,0,0,0).stroke({ width: 1});
+      }
+
+    })
+
+$('svg').on('click', 'g[name="sandbox"] image', function(){
+      if(a==-1){a +=2;}
+      if(a==0){a+=1}
+      element = SVG.get(this.getAttribute('id'))
+      //console.log("event +",a);
+
+    if(a == 1 || 0 ){
        var x = element.x() - padding;
        var x2 = x + element.width() + padding;
        var y = element.y() - padding;
        var y2 = y + element.height() + padding;
-      }
-      selectTop.plot(x, y, x2, y ).stroke({ width: 1});
-      selectBottom.plot(x, y2, x2, y2 ).stroke({ width: 1});
-      selectLeft.plot(x, y, x, y2 ).stroke({ width: 1});
-      selectRight.plot(x2, y, x2, y2 ).stroke({ width: 1});
-   //line.plot(x+2, y+2, x2-2, y+2);
-   //hi guys
-    })
+        selectTop.plot(x, y, x2, y ).stroke({ width: 1});
+        selectBottom.plot(x, y2, x2, y2 ).stroke({ width: 1});
+        selectLeft.plot(x, y, x, y2 ).stroke({ width: 1});
+        selectRight.plot(x2, y, x2, y2 ).stroke({ width: 1});
+        knob.radius(4); knob.move(x-2 +(x2-x)/2,y-24)
+        connectKnob.radius(4); connectKnob.move(x-2 +(x2-x)/2,y-4);
+        connectLine.plot(x+2 +(x2-x)/2,y-4,x+2 +(x2-x)/2,y-17).stroke({ width: 1});
+     }
+  })
     //update form for the furniture
     $('svg').on('click', 'g[name="sandbox"] image', function(){
       element = SVG.get(this.getAttribute('id'))
@@ -82,5 +113,5 @@ $(document).ready(function(){
       element.height($('#furn_length').val())
       element.transform({ rotation: $('#furn_rotation').val() })
     })
-   //var lineW = draw.line(52, 52, 448, 52 ).stroke({ width: 1 });
-  })
+
+})
