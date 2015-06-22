@@ -39,12 +39,7 @@ $(document).ready(function(){
       var clone = this.clone()
       console.log(clone.id())
       clone.move(0,0)
-      clone.draggable({
-        minX: 0
-        , minY: 0
-        , maxX: 800
-        , maxY: 350
-      })
+      clone.draggable()
       sandboxFurn.add(clone)
 
       // sandboxFurn.each(function(){
