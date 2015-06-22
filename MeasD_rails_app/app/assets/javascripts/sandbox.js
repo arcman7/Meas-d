@@ -38,7 +38,8 @@ $(document).ready(function(){
     , maxY: 350
     })
     // clone.on('click')
-
+// element.x()
+// element.y() always refer to the top left corner
   })
   })
 
