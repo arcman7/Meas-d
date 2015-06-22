@@ -47,6 +47,8 @@ $(document).ready(function(){
     var element;
     var selected = false;
     var selectTop, selectBottom, selectLeft, selectRight;
+    selectTop = draw.line(0,0,0,0).stroke({width: 1}); selectBottom = draw.line(0,0,0,0).stroke({width: 1}); selectLeft = draw.line(0,0,0,0).stroke({width: 1}); selectRight = draw.line(0,0,0,0).stroke({width: 1});
+
     var padding=3;
     $('svg').on('mousedown', 'g[name="sandbox"] image', function(){
       selected = true;
@@ -56,10 +58,10 @@ $(document).ready(function(){
        var y = element.y() - padding;
        var y2 = y + element.height() + padding;
       }
-      selectTop = draw.line(x, y, x2, y ).stroke({ width: 1});
-      selectBottom = draw.line(x, y2, x2, y2 ).stroke({ width: 1});
-      selectLeft = draw.line(x, y, x, y2 ).stroke({ width: 1});
-      selectRight = draw.line(x2, y, x2, y2 ).stroke({ width: 1});
+      selectTop.plot(x, y, x2, y ).stroke({ width: 1});
+      selectBottom.plot(x, y2, x2, y2 ).stroke({ width: 1});
+      selectLeft.plot(x, y, x, y2 ).stroke({ width: 1});
+      selectRight.plot(x2, y, x2, y2 ).stroke({ width: 1});
    //line.plot(x+2, y+2, x2-2, y+2);
    //hi guys
     })
