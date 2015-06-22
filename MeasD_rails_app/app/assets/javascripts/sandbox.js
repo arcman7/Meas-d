@@ -45,6 +45,23 @@ $(document).ready(function(){
   })
 
     var element;
+    var selected = false;
+    var selectTop, selectBottom, selectLeft, selectRight;
+    var padding=3;
+    $('svg').on('mousedown', 'g[name="sandbox"] image', function(){
+      selected = true;
+      if(selected){
+       var x = element.x() - padding;
+       var x2 = x + element.width() + padding;
+       var y = element.y() - padding;
+       var y2 = y + element.height() + padding;
+      }
+      selectTop = draw.line(x, y, x2, y ).stroke({ width: 1});
+      selectBottom = draw.line(x, y2, x2, y2 ).stroke({ width: 1});
+      selectLeft = draw.line(x, y, x, y2 ).stroke({ width: 1});
+      selectRight = draw.line(x2, y, x2, y2 ).stroke({ width: 1});
+   //line.plot(x+2, y+2, x2-2, y+2);
+    })
     //update form for the furniture
     $('svg').on('click', 'g[name="sandbox"] image', function(){
       element = SVG.get(this.getAttribute('id'))
@@ -62,5 +79,5 @@ $(document).ready(function(){
       element.height($('#furn_length').val())
       element.transform({ rotation: $('#furn_rotation').val() })
     })
-
+   //var lineW = draw.line(52, 52, 448, 52 ).stroke({ width: 1 });
   })

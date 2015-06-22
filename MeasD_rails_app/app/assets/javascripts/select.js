@@ -11,10 +11,10 @@
 //         el.remember('_selectHandler', this);
 //         this.pointSelection = {isSelected: false};
 //         this.rectSelection = {isSelected: false};
-
+//SelectHandler
 //     }
 
-//     SelectHandler.prototype.init = function (value, options) {
+//     .prototype.init = function (value, options) {
 
 //         var bbox = this.el.bbox();
 //         this.options = {};
