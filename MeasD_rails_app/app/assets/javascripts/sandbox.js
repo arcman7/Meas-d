@@ -41,42 +41,11 @@ $(document).ready(function(){
       clone.move(0,0)
       clone.draggable()
       sandboxFurn.add(clone)
+    })
+  })
 
-      // sandboxFurn.each(function(){
-      //   // console.log(this)
-      //   clone.on('click', function(){
-      //     $('#furn_name').val(this.attr('name'))
-      //     $('#furn_width').val(this.width())
-      //     $('#furn_length').val(this.height())
-      //     $('#furn_rotation').val(this.transform('rotation'))
-      //     var self = this
-      //     $('#furniture_form').submit(function(e){
-      //       console.log(self)
-      //       e.preventDefault()
-      //       self.attr('name', $('#furn_name').val())
-      //       self.width($('#furn_width').val())
-      //     })
-      //   })
-      // })
-
-      // clone.on('click', function(){
-      //   $('#furn_name').val(this.attr('name'))
-      //   $('#furn_width').val(this.width())
-      //   $('#furn_length').val(this.height())
-      //   $('#furn_rotation').val(this.transform('rotation'))
-      //   var self = this
-      //   $('#furniture_form').submit(function(e){
-      //     console.log(self)
-      //     e.preventDefault()
-      //     self.attr('name', $('#furn_name').val())
-      //     self.width($('#furn_width').val())
-      //   })
-
-      // })
-})
-})
-    //select
     var element;
+    //update form for the furniture
     $('svg').on('click', 'g[name="sandbox"] image', function(){
       element = SVG.get(this.getAttribute('id'))
       $('#furn_name').val(element.attr('name'))
@@ -85,18 +54,13 @@ $(document).ready(function(){
       $('#furn_rotation').val(element.transform('rotation'))
     })
 
+    //update the furniture based on form input
     $('#furniture_form').on('submit', function(e){
-      console.log(element)
       e.preventDefault()
       element.attr('name', $('#furn_name').val())
       element.width($('#furn_width').val())
       element.height($('#furn_length').val())
       element.transform({ rotation: $('#furn_rotation').val() })
     })
-
-
-
-
-
 
   })
