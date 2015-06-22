@@ -61,6 +61,7 @@ $(document).ready(function(){
       selectLeft = draw.line(x, y, x, y2 ).stroke({ width: 1});
       selectRight = draw.line(x2, y, x2, y2 ).stroke({ width: 1});
    //line.plot(x+2, y+2, x2-2, y+2);
+   //hi guys
     })
     //update form for the furniture
     $('svg').on('click', 'g[name="sandbox"] image', function(){
