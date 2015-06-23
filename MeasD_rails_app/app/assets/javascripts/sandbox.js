@@ -2,14 +2,14 @@
 $(document).ready(function(){
   var draw = SVG('drawing').size(800, 600)
 
-  var roomWidth = 400;
-  var roomLength = 250;
+  var roomWidth = 550;
+  var roomLength = 350;
   var line = draw.line(0,500, 800,500).stroke({ width: 1 })
 
   var room = draw.rect(roomWidth,roomLength)
   room.fill('white')
   room.stroke({color: 'black', width: 7, linejoin: 'round'})
-  room.move(200,50)
+  room.move(100,50)
 
   $('#room_width').val(room.width())
   $('#room_length').val(room.height())
@@ -20,18 +20,57 @@ $(document).ready(function(){
     room.height($('#room_length').val())
   })
 
-  var bed = draw.image('assets/bed.png', 50,75)
-  bed.move(50,510)
-  bed.stroke({width: 10})
+  var nightstand = draw.image('assets/nightstand.png', 20,20)
+  nightstand.move(10, 510)
+  nightstand.attr('name', 'Nightstand')
+
+  var bed = draw.image('assets/bed.png', 60,80)
+  bed.move(40,510)
   bed.attr('name', 'Bed')
 
-  var couch = draw.image('assets/couch.png', 139, 50)
-  couch.move(120, 510)
+  var desk = draw.image('assets/desk.png', 60,30)
+  desk.move(110,510)
+  desk.attr('name', 'Desk')
+
+  var couch = draw.image('assets/couch.png', 90,40)
+  couch.move(180, 510)
   couch.attr('name', 'Couch')
 
+  var sofa = draw.image('assets/sofa.png', 50,40)
+  sofa.move(280,510)
+  sofa.attr('name', 'Sofa')
+
+  var tvStand = draw.image('assets/tvstand.png', 60,20)
+  tvStand.move(340,510)
+  tvStand.attr('name', 'TV Stand')
+
+  var doorLeft = draw.image('assets/doorleft.png', 30,30)
+  doorLeft.move(410,510)
+  doorLeft.attr('name', 'Door')
+
+  var doorRight = draw.image('assets/doorright.png', 30,30)
+  doorRight.move(450,510)
+  doorRight.attr('name', 'Door')
+
+  var windowFrame = draw.image('assets/window.png', 50,6)
+  windowFrame.move(490,510)
+  windowFrame.attr('name', 'Window')
+
+  var electric = draw.image('assets/outlet.png', 25,25)
+  electric.move(550,510)
+  electric.attr('name', 'Power Outlet')
+
   var toolBoxFurn = draw.group()
+  toolBoxFurn.add(nightstand)
   toolBoxFurn.add(bed)
+  toolBoxFurn.add(desk)
   toolBoxFurn.add(couch)
+  toolBoxFurn.add(sofa)
+  toolBoxFurn.add(tvStand)
+  toolBoxFurn.add(doorLeft)
+  toolBoxFurn.add(doorRight)
+  toolBoxFurn.add(windowFrame)
+  toolBoxFurn.add(electric)
 
   var sandboxFurn = draw.group()
   sandboxFurn.attr('name', 'sandbox')
