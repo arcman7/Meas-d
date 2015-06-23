@@ -8,8 +8,11 @@ $(document).ready(function(){
 
   var room = draw.rect(roomWidth,roomLength)
   room.fill('white')
-  room.stroke({color: 'black', width: 1})
+  room.stroke({color: 'black', width: 7, linejoin: 'round'})
   room.move(200,50)
+
+  $('#room_width').val(room.width())
+  $('#room_length').val(room.height())
 
   $('#room_form').submit(function(e){
     e.preventDefault();
@@ -19,13 +22,12 @@ $(document).ready(function(){
 
   var bed = draw.image('assets/bed.png', 50,75)
   bed.move(50,510)
+  bed.stroke({width: 10})
   bed.attr('name', 'Bed')
-  bed.attr('value', 'bed')
 
-  var couch = draw.image('assets/couch.png', 100,50)
-  couch.move(150, 510)
+  var couch = draw.image('assets/couch.png', 139, 50)
+  couch.move(120, 510)
   couch.attr('name', 'Couch')
-  couch.attr('value', 'couch')
 
   var toolBoxFurn = draw.group()
   toolBoxFurn.add(bed)
@@ -37,7 +39,6 @@ $(document).ready(function(){
   toolBoxFurn.each(function(){
     this.on('click', function(){
       var clone = this.clone()
-      console.log(clone.id())
       clone.move(0,0)
       clone.draggable()
       sandboxFurn.add(clone)
@@ -48,6 +49,7 @@ $(document).ready(function(){
     //update form for the furniture
     $('svg').on('click', 'g[name="sandbox"] image', function(){
       element = SVG.get(this.getAttribute('id'))
+      // element.select().resize()
       $('#furn_name').val(element.attr('name'))
       $('#furn_width').val(element.width())
       $('#furn_length').val(element.height())
@@ -57,10 +59,16 @@ $(document).ready(function(){
     //update the furniture based on form input
     $('#furniture_form').on('submit', function(e){
       e.preventDefault()
+      element.draggable(false)
+      var xScale = $('#furn_width').val() / element.width()
+      var yScale = $('#furn_length').val() / element.height()
       element.attr('name', $('#furn_name').val())
+      element.scale(xScale, yScale)
       element.width($('#furn_width').val())
       element.height($('#furn_length').val())
       element.transform({ rotation: $('#furn_rotation').val() })
+      element.draggable()
+
     })
 
   })

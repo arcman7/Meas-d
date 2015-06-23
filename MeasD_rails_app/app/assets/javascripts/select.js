@@ -1,4 +1,4 @@
-// /*! svg.select.js - v1.0.2 - 2015-06-21
+// /*! svg.select.js - v1.0.4 - 2015-06-22
 // * https://github.com/Fuzzyma/svg.select.js
 // * Copyright (c) 2015 Ulrich-Matthias Schäfer; Licensed MIT */
 // /*jshint -W083*/
@@ -7,7 +7,7 @@
 //     function SelectHandler(el) {
 
 //         this.el = el;
-//         this.parent = el._parent(SVG.Nested) || el._parent(SVG.Doc);
+//         this.parent = el.parent(SVG.Nested) || el.parent(SVG.Doc);
 //         el.remember('_selectHandler', this);
 //         this.pointSelection = {isSelected: false};
 //         this.rectSelection = {isSelected: false};
@@ -27,7 +27,7 @@
 //             }
 //         }
 
-//         this.nested = (this.nested || this.parent.nested()).size(bbox.width || 1, bbox.height || 1).transform(this.el.transform).move(bbox.x, bbox.y);
+//         this.nested = (this.nested || this.parent.nested()).size(bbox.width || 1, bbox.height || 1).transform(this.el.ctm()).move(bbox.x, bbox.y);
 
 //         // When deepSelect is enabled and the element is a line/polyline/polygon, draw only points for moving
 //         if (this.options.deepSelect && ['line', 'polyline', 'polygon'].indexOf(this.el.type) !== -1) {
@@ -63,10 +63,7 @@
 //     SelectHandler.prototype.getPointArray = function () {
 //         var bbox = this.el.bbox();
 
-//         return this.el.type === 'line' ? [
-//             [this.el.attr('x1') - bbox.x, this.el.attr('y1') - bbox.y],
-//             [this.el.attr('x2') - bbox.x, this.el.attr('y2') - bbox.y]
-//         ] : this.el.array.value.map(function (el) {
+//         return this.el.array().valueOf().map(function (el) {
 //             return [el[0] - bbox.x, el[1] - bbox.y];
 //         });
 //     };
@@ -152,7 +149,7 @@
 //             return function (ev) {
 //                 ev = ev || window.event;
 //                 ev.preventDefault ? ev.preventDefault() : ev.returnValue = false;
-//                 _this.el.fire(eventName, {x: ev.pageX, y: ev.pageY});
+//                 _this.el.fire(eventName, {x: ev.pageX, y: ev.pageY, event: ev});
 //             };
 //         }
 
@@ -185,7 +182,7 @@
 //                 .mousedown(function (ev) {
 //                     ev = ev || window.event;
 //                     ev.preventDefault ? ev.preventDefault() : ev.returnValue = false;
-//                     _this.el.fire('rot', {x: ev.pageX, y: ev.pageY});
+//                     _this.el.fire('rot', {x: ev.pageX, y: ev.pageY, event: ev});
 //                 }));
 
 //         }
@@ -195,7 +192,7 @@
 //     SelectHandler.prototype.handler = function () {
 
 //         var bbox = this.el.bbox();
-//         this.nested.size(bbox.width || 1, bbox.height || 1).transform(this.el.transform()).move(bbox.x, bbox.y);
+//         this.nested.size(bbox.width || 1, bbox.height || 1).transform(this.el.ctm()).move(bbox.x, bbox.y);
 
 //         if (this.rectSelection.isSelected) {
 //             this.updateRectSelection();
@@ -266,8 +263,11 @@
 //              this.observerInst.disconnect();
 //              delete this.observerInst;
 //              }catch(e){}
+
 //              this.el.off('DOMAttrModified.select');
+
 //              }else{
+
 //              if(MutationObserver){
 //              this.observerInst = this.observerInst || new MutationObserver(function(){ _this.handler(); });
 //              this.observerInst.observe(this.el.node, {attributes: true});

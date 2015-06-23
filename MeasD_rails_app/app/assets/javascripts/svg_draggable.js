@@ -102,6 +102,10 @@
         /* caculate new position [with rotation correction] */
         x = parameter.position.x + (delta.x * Math.cos(rotation) + delta.y * Math.sin(rotation)) / parameter.position.zoom
         y = parameter.position.y + (delta.y * Math.cos(rotation) + delta.x * Math.sin(-rotation)) / parameter.position.zoom
+        console.log(parameter)
+        // console.log(parameter.position.y)
+
+
 
         /* move the element to its new position, if possible by constraint */
         if (typeof constraint == 'function') {
