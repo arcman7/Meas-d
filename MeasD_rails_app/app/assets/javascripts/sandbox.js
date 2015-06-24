@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
   var draw = SVG('drawing').size(800, 600)
+  var elem = document.getElementById('drawing');
+  var drawOffSetX = elem.offsetLeft;
+  var drawOffSetY = elem.offsetTop;
 
   var roomWidth = 400;
   var roomLength = 250;
@@ -37,7 +40,7 @@ $(document).ready(function(){
   toolBoxFurn.each(function(){
     this.on('click', function(){
       var clone = this.clone()
-      console.log(clone.id())
+      //console.log(clone.id())
       clone.move(0,0)
       clone.draggable()
       sandboxFurn.add(clone)
@@ -66,6 +69,9 @@ $(document).ready(function(){
     var deltaY_old = 0;
     var deltaX,deltaY;
     var centerX,centerY;
+    var mOldX,mOldY;
+    var mPreviousAngle, mCurrentAngle;// both are angles relative to center of object
+    var deltaAngle;
 //end variable intialization
     $('svg').on('click', function(){
       if(a>-1){ a -= 1; }
@@ -87,70 +93,59 @@ $('svg').on('mousedown','circle[name = "rotationKnob"]',function(ev){
   vmousedown = true;
   mouseX = ev.pageX;
   mouseY = ev.pageY;
-  console.log("hi");
+  centerX = element.cx();
+  centerY = element.cy();
+  mOldX = ev.pageX - drawOffSetX - centerX;
+  mOldY = ev.pageY - drawOffSetY - centerY;
 });
 $('svg').on('mousemove',function(ev){
    if (vmousedown === false){ return; }
-   //console.log(element);
-   deltaX = ev.pageX - mouseX - deltaX_old;
-   deltaY = ev.pageY - mouseY - deltaY_old;
-   deltaX_old = ev.pageX - mouseX;
-   deltaY_old = ev.pageY - mouseY;
-   centerX = element.cx();
-   centerY = element.cy();
+   //minus 90 puts it in perspective from object center
+   mPreviousAngle = 90 - Math.atan(mOldY/mOldX)*(360/(2*Math.PI));;
+   mCurrentAngle = 90 - Math.atan( (ev.pageY- drawOffSetY - centerY)  / (ev.pageX- drawOffSetX - centerX) )*(360/(2*Math.PI));
+   deltaAngle = mCurrentAngle - mPreviousAngle;
 
+   console.log(centerX, centerY);
+   console.log(mOldX, mOldY);
+   //console.log(mPreviousAngle,mCurrentAngle,deltaAngle);
+   degrees = deltaAngle*-1;
+   if( ((ev.pageY- drawOffSetY - centerY) >0) && ((ev.pageX- drawOffSetX - centerX) < 0)){
+      degrees = 180 + degrees;
+   }
+   console.log("degrees = "+ degrees);
+   degrees = element.transform("rotation") + degrees;
 
-   theta = Math.atan(deltaY/deltaX)*(360/(2*Math.PI));
-   var a = Math.sqrt( Math.pow((ev.pageX-8 - centerX),2) + Math.pow((ev.pageY-682 - centerY),2) );
-   var c = Math.sqrt( Math.pow(deltaX,2) + Math.pow(deltaY,2) );
-   if(c != 0){
-       var A = 90.0 - theta;
-       var C = Math.asin(c*Math.sin(A)/a);
-       degrees = C*(360/(2*Math.PI));
-       //degrees = Math.abs(degrees);
-       //console.log("a = " + Math.round(a),"c = " + Math.round(c), "A = "+ A,"C = "+C*(360/(2*Math.PI)), degrees)
-       degrees = element.transform("rotation") + degrees;
-       if(degrees > 360){
-         degrees = degrees % 360;
-       }
-       console.log(degrees);
-       element.rotate(1+degrees);
-       set1.rotate(1+degrees, centerX, centerY);
-    }
+   if(/*Math.abs(degrees)*/degrees > 360){
+     degrees = degrees % 360;
+   }
+   console.log(degrees);
+   element.rotate(degrees);
+   set1.rotate(degrees, centerX, centerY);
+   mOldX = ev.pageX - drawOffSetX - centerX;
+   mOldY = ev.pageY - drawOffSetY - centerY;
 });
 
 $('svg').on('mouseup',function(ev){
   if (vmousedown === false){ return; }
 
-  deltaX = ev.pageX - mouseX - deltaX_old;
-  deltaY = ev.pageY - mouseY - deltaY_old;
-  centerX = element.cx();
-  centerY = element.cy();
+  // mPreviousAngle = 90 - Math.atan(mOldY/mOldX);
+  //  mCurrentAngle = 90 - Math.atan( (ev.pageY- drawOffSetY - centerY)  / (ev.pageX- drawOffSetX - centerX) )
+  //  deltaAngle = mCurrentAngle - mPreviousAngle;
 
-  theta = Math.atan(deltaY/deltaX)*(360/(2*Math.PI));
-  var a = Math.sqrt( Math.pow((ev.pageX-8 - centerX),2) + Math.pow((ev.pageY-682 - centerY),2) );
-  var c = Math.sqrt( Math.pow(deltaX,2) + Math.pow(deltaY,2) );
-  if(c != 0){
-     var A = 90.0 - theta;
-     var C = Math.asin(c*Math.sin(A)/a);
-     degrees = C*(360/(2*Math.PI));
-     //degrees = Math.abs(degrees);
-     //console.log("a = " + Math.round(a),"c = " + Math.round(c), "A = "+ A,"C = "+C*(360/(2*Math.PI)), degrees)
-     degrees = element.transform("rotation") + degrees;
-     if(degrees > 360){
-       degrees = degrees % 360;
-     }
-     console.log(degrees);
-     if(deltaX > 0 ){ degrees = degrees*-1;}
-     element.rotate(degrees);
-     set1.rotate(degrees, centerX, centerY);
-     // vmousedown = false;
-     // deltaX_old = 0;
-     // deltaY_old = 0;
-   }
-  vmousedown = false;
-  deltaX_old = 0;
-  deltaY_old = 0;
+  //  //console.log(ev.pageX, drawOffSetX, centerX, mOldX);
+  //  console.log(mPreviousAngle,mCurrentAngle,deltaAngle);
+  //  degrees = deltaAngle*(360/(2*Math.PI));
+  //  degrees = element.transform("rotation") + degrees;
+  //  if(degrees > 360){
+  //    degrees = degrees % 360;
+  //  }
+  //  console.log(degrees);
+  //  element.rotate(degrees);
+  //  set1.rotate(degrees, centerX, centerY);
+  //  mOldX = ev.pageX - drawOffSetX - centerX;
+  //  mOldY = ev.pageY - drawOffSetY - centerY;
+   vmousedown = false;
+
 });//end mouseup event
 
 
